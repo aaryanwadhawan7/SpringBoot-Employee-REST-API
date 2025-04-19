@@ -52,6 +52,23 @@
         </dependency>
     </dependencies>
 
+    <!-- Micrometer Core & Graphite -->
+    <dependency>
+       <groupId>io.micrometer</groupId>
+       <artifactId>micrometer-core</artifactId>
+    </dependency>
+
+    <dependency>
+       <groupId>io.micrometer</groupId>
+       <artifactId>micrometer-registry-graphite</artifactId>
+    </dependency>
+
+<!-- Actuator for Spring Boot metrics -->
+    <dependency>
+       <groupId>org.springframework.boot</groupId>
+       <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+
     <build>
         <plugins>
             <plugin>
