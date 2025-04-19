@@ -1,0 +1,54 @@
+pipeline {
+    agent any
+
+    environment {
+        GIT_REPO = 'git@github.com:aaryanwadhawan7/SpringBoot-Employee-REST-API.git'
+        BRANCH = 'main'
+    }
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git branch: "${BRANCH}", url: "${GIT_REPO}"
+            }
+        }
+
+        stage('Build with Maven') {
+            steps {
+                sh 'mvn clean install'
+            }
+        }
+
+        stage('Run Unit Tests') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+
+        stage('Archive Test Reports') {
+            steps {
+                junit 'target/surefire-reports/*.xml'
+            }
+        }
+
+        stage('Package App') {
+            steps {
+                sh 'mvn package'
+            }
+        }
+
+        // Optional: Deployment, Code Analysis, etc.
+    }
+
+    post {
+        always {
+            echo 'Pipeline finished!'
+        }
+        failure {
+            echo 'Pipeline failed'
+        }
+        success {
+            echo 'Pipeline succeeded'
+        }
+    }
+}
