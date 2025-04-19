@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git url: 'git@github.com:aaryanwadhawan7/SpringBoot-Employee-REST-API.git', credentialsId: '6e27bf59-dff6-442d-989e-989d8b88f982'
+                git branch: 'main', git url: 'git@github.com:aaryanwadhawan7/SpringBoot-Employee-REST-API.git', credentialsId: '6e27bf59-dff6-442d-989e-989d8b88f982'
             }
         }
 
